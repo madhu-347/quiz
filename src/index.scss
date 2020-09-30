@@ -2,29 +2,36 @@
     font-family: 'Poppins';
     src: url('../src/assests/fonts/Poppins-Regular.ttf')
 }
+$button-color : #fff;
+$left-color :#f299d6;
+$right-color:#750e55;
 
 html{
     font-family: 'Poppins';
-
     height: 100%;
+    input{
+        margin: 10px;
+        border-radius: 15px;
+        padding:5px;
+    }
+    input:focus{
+        outline: none;
+    }
+    button{
+        margin: 3px;
+        border-radius: 25px;
+        padding: 10px;
+        background-color: $button-color;
+    }
+    button:focus{
+        outline:none;
+    }
     .App{
-        padding: 30px;
+        padding: 60px;
         display: flex;
         flex-direction: row;
         justify-content: center;
-        .left-pane{
-            padding: 40px;
-            width: 40%;
-            text-align: left;
-            background-color: cadetblue;
-            .left-pane-topic{
-                padding-bottom: 50px;
-            }
-        }
-        .right-pane{
-            width: 60%;
-            background-color: cornflowerblue;
-    
-        }
+        
+       
     }
 }

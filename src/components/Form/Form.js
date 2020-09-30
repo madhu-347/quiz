@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
 import Options from '../Options/Options';
 class Form extends Component {
-
-    state = {
-        question : [],
-    };
-
+    
 formSubmit = (e) => {
     e.preventDefault();
     
@@ -14,23 +10,27 @@ formSubmit = (e) => {
 
 handleChange = (event) => {
       this.setState({question :event.target.value }, () => {
-        localStorage.setItem('question',JSON.stringify(this.state.question));
+        localStorage.setItem('question',JSON.stringify(question));
       })
         
 }
-
+sendData = () => {
+    this.props.parentCallback(question);
+}
 submit = () => {
    
-    console.log(this.state.question)
+    console.log(question)
 }
 
     render(){
+        const question = this.props.question;
          return(
             <form onSubmit = {this.formSubmit} >
                 <label>Question</label>
-                <input value = {this.state.question} onChange = {this.handleChange} placeholder= 'Type your Question here...' />
+                <input value = {question} onChange = {this.handleChange} placeholder= 'Type your Question here...' />
                 
                 <button>ADD IMAGE</button>
+                <br />
                 <button onClick = {this.submit} name = 'submit' value = 'button'>Submit</button>
                 <Options />
             </form>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Questions from '../Questions/Questions';
-class RightPane extends Component{
+import "./left-pane.scss";
+class LeftPane extends Component{
     render(){
 
         return (
@@ -13,4 +14,4 @@ class RightPane extends Component{
         )
     }
 }
-export default RightPane;
+export default LeftPane;

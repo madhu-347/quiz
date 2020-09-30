@@ -1,0 +1,26 @@
+@font-face{
+    font-family: 'Poppins';
+    src: url('../../assests/fonts/Poppins-Regular.ttf')
+}
+$button-color : #fff;
+$left-color: #f299d6;
+$right-color:#750e55;
+
+.left-pane{
+    color: $right-color;
+    padding: 40px;
+    width: 40%;
+    text-align: left;
+    background-color: $left-color;
+    button{
+        display: flex; 
+        margin: 10px;
+        background-color: $right-color;
+    }
+    button:hover{
+        color: #fff;
+    }
+    .left-pane-topic{
+        padding-bottom: 50px;
+    }
+}
