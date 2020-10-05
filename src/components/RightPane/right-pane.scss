@@ -2,10 +2,13 @@
     font-family: 'Poppins';
     src: url('../../assests/fonts/Poppins-Regular.ttf')
 }
+$border-radius : 30px;
 $button-color : #fff;
 $left-color :#f299d6;
 $right-color:#750e55;
 .right-pane{
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
     padding: 20px;
     color: $left-color;
     width: 60%;

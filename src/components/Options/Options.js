@@ -4,8 +4,7 @@ class Options extends Component{
     render(){
         return(
             <div>
-               <label>Option {}</label>
-               <input />
+               {this.props.qNumber}. {this.props.Questions}
             </div>
         )
     }

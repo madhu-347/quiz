@@ -7,7 +7,7 @@ class LeftPane extends Component{
         return (
         <div>
             <div className = "left-pane-topic">Select your questions</div>
-            <div><Questions vari = {this.props.question} /> </div>
+            <div><Questions /> </div>
             <button>ADD</button>
             <button>DELETE</button>
         </div>

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
  class Questions extends Component{
 render(){
-    var variab = this.props.vari;
+    const xxx = 'asdfgf';
+    const variab = xxx;
 return(
 <li>{variab}</li>
 )

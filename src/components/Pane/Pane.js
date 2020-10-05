@@ -2,12 +2,10 @@ import React from 'react';
 import LeftPane from '../LeftPane/LeftPane';
 import RightPane from '../RightPane/RightPane';
 class Pane extends React.Component{
-
-            state = {
-                question : []
-            }
-        
-    
+   state = {
+      que : '',
+      questions : ''
+    }
     render(){
         return (
             <div className="App">
@@ -15,7 +13,7 @@ class Pane extends React.Component{
                 <LeftPane/>
               </div>
               <div  className = 'right-pane'>
-                <RightPane  question = {this.state.question} />
+                <RightPane  questions = {this.questions}  que ={this.que} />
               </div>
             
             </div>
