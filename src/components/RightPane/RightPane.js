@@ -1,4 +1,5 @@
 import React ,{Component} from 'react';
+import Options from '../Options/Options'
 import "./right-pane.scss";
 class RightPane extends Component{
     
@@ -12,52 +13,47 @@ class RightPane extends Component{
         this.setState({[this.props.question] : event.target.value}, () => {
             localStorage.setItem('questions',JSON.stringify(this.props.QuestionArray));
         })
-            
+           console.log(this.props.question) 
     }
 
-    submit = () => {
-        
-        this.setState({
-            [this.props.qNumber] : this.props.qNumber + 1
-        })
-        
-        const copyQuestionsArray = Object.assign( [],this.props.QuestionArray);
-       
-        console.log(this.props.QuestionArray)
-    } 
-    deleteFunction = (index) => {
-        const copyQuestionsArray = Object.assign( [],this.props.QuestionArray);
-        copyQuestionsArray.splice(index, 1);
-        this.setState({
-            QuestionArray : copyQuestionsArray
-        })
-        
-    }
+    
+ 
     componentDidMount(){
         var data = JSON.parse(localStorage.getItem('questions'));
         
         if (localStorage.getItem('questions')) {
           this.setState({QuestionArray: data}, () => 
           {
-            localStorage.setItem('questions',JSON.stringify(this.state.QuestionArray)) 
+            localStorage.setItem('questions',JSON.stringify(this.props.QuestionArray)) 
           });
          
   } 
+}
+submit = (event) => {
+    this.props.callBackToRightPane()
 }
 
     render(){
         
          return(
-            <form onSubmit = {this.formSubmit} >
+           /*<form onSubmit = {this.formSubmit} >
                 <label>Question</label>
                 <input type = 'text' onBlur = {this.handleChange} placeholder= 'Type your Question here...' />
                 
                 <button>ADD IMAGE</button>
                 <br />
+                <label>Options</label>
+                <input type = 'text' placeholder = 'Options...' />
                 <button onClick = {this.submit} name = 'submit' value = 'button'>Submit</button>
-            </form>
+            </form>*/
+            <div>
+                <input />
+                <button onClick = {this.props.handle}></button>
+                <li>{this.props.data.selectedvalue}</li>
+            </div>
         )
     }   
 
 }
 export default RightPane;
+

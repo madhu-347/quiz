@@ -8,29 +8,49 @@ class Pane extends React.Component{
       QuestionArray : [
         {
           qNumber : 1,
-          Question : '',
+          Question : 'asdfghjk',
           options : []
+        
         }],
         selectedQNumber : ''
     }
     
 }
+handle = () => {
+  this.setState ((prevState) => ({
+      selectedQNumber : prevState.selectedQNumber + 1
+  }))
+  console.log(this.state.selectedQNumber)
 
+}
+callBackFunction = (dataFromRightPane) => {
+  this.setState({
+    selectedQNumber : dataFromRightPane
+  })
+}
+QNumberSelector = () => {
+  
+}
  
     render(){
+      
+    
         return (
             <div className="App">
               <div className = 'left-pane'>
                 <LeftPane
                 QuestionArray = {this.state.QuestionArray}
-                selectedQNumber = {this.state.selectedQNumber}
-                
+                selectedQNumber = {this.selectedQuestion}
                 />
               </div>
+              
+
               <div  className = 'right-pane'>
-                <RightPane
-                selectedQNumber = {this.state.selectedQNumber}
-                
+                <RightPane data = {
+                  {selectedvalue : this.state.selectedQNumber,
+                    QuestionArray : this.state.QuestionArray}
+                }
+                handle = {this.handle}
                 />
 
               </div>
