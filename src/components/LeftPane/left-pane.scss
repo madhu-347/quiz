@@ -2,6 +2,7 @@
     font-family: 'Poppins';
     src: url('../../assests/fonts/Poppins-Regular.ttf')
 }
+$mobile-breakpoint : 425px;
 $border-radius : 30px;
 $button-color : #fff;
 $left-color: #f299d6;
@@ -16,14 +17,40 @@ $right-color:#750e55;
     text-align: left;
     background-color: $left-color;
     button{
+        color:$right-color; 
+        border:0px solid $left-color;
+        display: flex; 
+        margin: 0px;
+        padding: 0;
+        background-color: $left-color;
+    }
+    button:hover{
+        display: flex; 
+        
+    }
+    .question-button{
+        color:#3d032c;
+        padding: 10px;
         display: flex; 
         margin: 10px;
         background-color: $right-color;
     }
-    button:hover{
+    .hidden-navi-button{
+        display: none;
+    }
+    .question-button:hover{
+        padding: 10px;
         color: #fff;
     }
     .left-pane-topic{
         padding-bottom: 50px;
+        
+    }
+}
+@media (max-width: $mobile-breakpoint){
+    .left-pane{
+        .hidden-navi-button{
+            display: block;
+        }
     }
 }

@@ -2,6 +2,7 @@
     font-family: 'Poppins';
     src: url('../../assests/fonts/Poppins-Regular.ttf')
 }
+$mobile-breakpoint : 425px;
 $border-radius : 30px;
 $button-color : #fff;
 $left-color :#f299d6;
@@ -13,6 +14,20 @@ $right-color:#750e55;
     color: $left-color;
     width: 60%;
     background-color: $right-color;
+    
+    img{
+        height : 100px;
+        width: 100px;
+    }
+    label{
+        text-align: center;
+    }
+    textarea{
+        border-radius: 20px;
+    }
+    textarea:focus{
+       outline: none;
+    }
     button{
         background-color: $left-color;
         color: #fff;
