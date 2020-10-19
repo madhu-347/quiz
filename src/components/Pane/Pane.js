@@ -45,29 +45,26 @@ questionInput = (getValue) => {
 }
 
 // Deleting the selected question from the array
-deleteSpace = (index) => {
+deleteSpace = () => {
+  var increment = 1
   alert("Sure, you wanna delete?")
-
-document.addEventListener('delete',this.deletevalue.bind(this))
-this.deletevalue();
-
-}
-
-deletevalue(){
-  const increment = 0;
   const copyQuestionArray = Object.assign([], this.state.QuestionArray)
   copyQuestionArray.splice(this.state.selectedQNumber - 1 , 1);
   this.setState({
    QuestionArray : copyQuestionArray
   })
-  console.log(increment)
   copyQuestionArray.map(dete => {
-    dete.qNumber = increment + 1
+    
+    dete.qNumber = increment
+    increment = increment + 1
   })
+  
   this.setState({
     QuestionArray : copyQuestionArray
   })
+
 }
+
 // Adding the new question into the array 
 addSpace = () => {
 this.setState((prevState) => ({
@@ -106,18 +103,20 @@ callbackForaddOption = (value) => {
 
 // Deleting the selected option
 callbackFordeleteOption = (value,selectedQuestion) => {
+  var increment = 1
   alert('Sure? You wanna delete the option?');
   const copyQuestionArray = Object.assign([], this.state.QuestionArray)
   copyQuestionArray.filter((deleteoption) => deleteoption.qNumber === selectedQuestion).map((deleteoption2) => {
     deleteoption2.options.splice(value - 1 ,1)
-    copyQuestionArray.map((deleteUpdate) => {
-      console.log(deleteUpdate.qNumber)
-      deleteUpdate.qNumber = deleteUpdate.qNumber + 1
-    })
-    this.setState({
-      QuestionArray : copyQuestionArray
-    })
-    
+  })
+   var ii = copyQuestionArray.filter((deleteoption) => deleteoption.qNumber === selectedQuestion).map((deleteoption2) => {
+     deleteoption2.options.map(deleteoption3 => {
+       deleteoption3.optionID = increment
+       increment  = increment + 1
+     })
+   })
+   this.setState({
+    QuestionArray : copyQuestionArray
   })
 }
 
