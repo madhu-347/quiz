@@ -2,8 +2,9 @@ import React ,{Component} from 'react';
 import LeftPane from '../LeftPane/LeftPane';
 import RightPane from '../RightPane/RightPane';
 import './pane.scss';
+
 export default class Pane extends Component{
-  
+
   constructor(){
     super();
    
@@ -12,7 +13,6 @@ export default class Pane extends Component{
         { 
           qNumber : 1,
           Question : '',
-          clickCount : 0,
           picture : null,
           options : [{
             optionID : 1,
@@ -22,24 +22,21 @@ export default class Pane extends Component{
             optionValue : ''
           }]
         }],
-        selectedQNumber : '',
-        
-        
+        selectedQNumber : 0,
+        screenWidth : true
+       
     }
-    
 }
 
-callBackFunction = (dataFromRightPane) => {
-  this.setState({
-    selectedQNumber : dataFromRightPane
-  })
-}
+
+// Saving the selected question number into the state 
 questionSelector = (qNumber) => {
 this.setState({
   selectedQNumber : qNumber
 })
 
 }
+// Saving the question input into the array 
 questionInput = (getValue) => {
   this.setState({
     Question : getValue
@@ -47,53 +44,54 @@ questionInput = (getValue) => {
 
 }
 
-
+// Deleting the selected question from the array
 deleteSpace = (index) => {
   alert("Sure, you wanna delete?")
-const copyQuestionArray = Object.assign([], this.state.QuestionArray)
-copyQuestionArray.splice(index - 1, 1);
-this.setState({
-  QuestionArray : copyQuestionArray
-})
+
+document.addEventListener('delete',this.deletevalue.bind(this))
+this.deletevalue();
 
 }
 
+deletevalue(){
+  const increment = 0;
+  const copyQuestionArray = Object.assign([], this.state.QuestionArray)
+  copyQuestionArray.splice(this.state.selectedQNumber - 1 , 1);
+  this.setState({
+   QuestionArray : copyQuestionArray
+  })
+  console.log(increment)
+  copyQuestionArray.map(dete => {
+    dete.qNumber = increment + 1
+  })
+  this.setState({
+    QuestionArray : copyQuestionArray
+  })
+}
+// Adding the new question into the array 
 addSpace = () => {
-
 this.setState((prevState) => ({
   QuestionArray : [...prevState.QuestionArray, 
-    { qNumber : this.state.QuestionArray.length + 1,Question : '',clickCount : 0, pic : null,
+    { qNumber : this.state.QuestionArray.length + 1,Question : '', picture : null,
     options : [ {optionID : 1,optionValue : ''} , {optionID : 2,optionValue : ''} ] }]
 }))
 
 
 
 }
+
+// Adding the option into the options array
 callbackForaddOption = (value) => {
-  const copyQuestionArray = Object.assign([], this.state.QuestionArray)
-   copyQuestionArray.filter(click => click.qNumber === value).map(clickcount => {
-  clickcount.clickCount = clickcount.clickCount + 1
-  var tempclick = clickcount.clickCount
-  this.setState({
-    QuestionArray : copyQuestionArray
-  })
-  console.log(tempclick)
-  console.log(this.state)
-  })
-   
-  
-  this.state.QuestionArray.filter(click => click.qNumber === value).map(clickcount => {
-     var clickvariable = clickcount.clickCount
-     console.log(clickvariable)
-    if(clickvariable <= 4) {
+ this.state.QuestionArray.filter(click => click.qNumber === value).map(clickcount => {
+    var clickvariable = clickcount.options.length
+    if(clickvariable <= 5) {
       let temp = Object.assign([], this.state.QuestionArray)
-      temp.map((option) => {
-       return(
-         <div>{
-           option.options.push({optionID:  option.options.length + 1 ,optionValue: ''})
-           }</div>
-         )
-           
+      temp.filter(filteredValue => filteredValue.qNumber === value ).map(optionSelector => {
+         return(
+          <div>{
+            optionSelector.options.push({optionID:  optionSelector.options.length + 1 ,optionValue: ''})
+            }</div>
+          )
        })
        this.setState({ QuestionArray:  temp })
     }
@@ -106,6 +104,24 @@ callbackForaddOption = (value) => {
      
 }
 
+// Deleting the selected option
+callbackFordeleteOption = (value,selectedQuestion) => {
+  alert('Sure? You wanna delete the option?');
+  const copyQuestionArray = Object.assign([], this.state.QuestionArray)
+  copyQuestionArray.filter((deleteoption) => deleteoption.qNumber === selectedQuestion).map((deleteoption2) => {
+    deleteoption2.options.splice(value - 1 ,1)
+    copyQuestionArray.map((deleteUpdate) => {
+      console.log(deleteUpdate.qNumber)
+      deleteUpdate.qNumber = deleteUpdate.qNumber + 1
+    })
+    this.setState({
+      QuestionArray : copyQuestionArray
+    })
+    
+  })
+}
+
+// Saving the question in the array 
 callBackforQuestion = (value,index) => {
   let valuesOfQuestion = [...this.state.QuestionArray]; 
   valuesOfQuestion[index - 1] = {...valuesOfQuestion[index - 1], Question : value}
@@ -113,7 +129,7 @@ callBackforQuestion = (value,index) => {
      QuestionArray:valuesOfQuestion})
   
 }
-
+// Saving the picture data in the array
 picFile = (value,index) => {
   let fileValue = [...this.state.QuestionArray];
   fileValue[index-1] = {...fileValue[index-1], picture : URL.createObjectURL(value)
@@ -123,6 +139,7 @@ picFile = (value,index) => {
   })
 
 }
+// Saving the options inside the array
 callBackOptionForpane = (value,index,selectedValue) => {
  let temp = Object.assign([], this.state.QuestionArray)
  temp.filter(oops => oops.qNumber === selectedValue).map(indce => {
@@ -133,27 +150,48 @@ callBackOptionForpane = (value,index,selectedValue) => {
  this.setState({
    QuestionArray : temp
  })
-
+ 
 }
 
-  
+backButtonChange = () => {
+  this.setState({
+    selectedQNumber : 0
+   
+  })
+}
+componentDidMount(){
+  window.addEventListener('resize',this.resize.bind(this))
+  this.resize();
+}
+resize() {
+  this.setState({screenWidth: window.innerWidth >= 425});
+}
+componentWillUnmount() {
+  window.removeEventListener("resize", this.resize.bind(this));
+}
 
     render(){
+       
+     
       return (
-            <div className="App">
-              <div className = 'left-pane'>
+            <div onClick = {this.handleChange} className="App">
+              <div className = {(this.state.screenWidth) ? ('left-pane desktop-left'): (
+                (this.state.selectedQNumber === 0) ? ('left-pane mobile-left' ):('left-pane mobile-right')
+              )} >
                 <LeftPane
                 QuestionArrayleft ={this.state.QuestionArray}
                 selectedQNumber = {this.state.selectedQNumber}
                 questionSelector ={this.questionSelector}
-                deleteSpace ={ this.deleteSpace}
+                deleteSpace ={this.deleteSpace}
                 addSpace = {this.addSpace}
               
                  />
               </div>
               
 
-              <div  className = 'right-pane'>
+              <div className = {(this.state.screenWidth) ? ('right-pane desktop-right'): (
+                (this.state.selectedQNumber === 0) ? ('right-pane mobile-right' ):('right-pane mobile-left')
+              )}>
                 {this.state.QuestionArray.filter(specificQuestion => specificQuestion.qNumber === this.state.selectedQNumber).map(specificQno => {
                   return <RightPane key = {specificQno.qNumber}
                     
@@ -165,9 +203,10 @@ callBackOptionForpane = (value,index,selectedValue) => {
                       questionInput = {this.questionInput}
                       callBackforQuestion = {this.callBackforQuestion}
                       callbackForaddOption = {this.callbackForaddOption}
+                      callbackFordeleteOption = {this.callbackFordeleteOption}
                       picFile = {this.picFile}
                       callBackOptionForpane = {this.callBackOptionForpane}
-                      
+                      backButtonChange = {this.backButtonChange}
                       />
                 })
                 

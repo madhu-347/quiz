@@ -1,7 +1,5 @@
 import React from 'react';
 import Pane from './components/Pane/Pane';
-
-
 import './App.css';
 
 function App() {

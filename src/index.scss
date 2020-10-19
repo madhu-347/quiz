@@ -3,14 +3,14 @@
     src: url('../src/assests/fonts/Poppins-Regular.ttf')
 }
 $button-color : #fff;
-$left-color :#f299d6;
-$right-color:#750e55;
+$left-color  : white;
+$right-color:#e3e2d5;
 
 html{
     font-family: 'Poppins';
     height: 100%;
+    background-color: rgba(107, 110, 99, 0.726);
     input{
-        margin: 10px;
         border-radius: 20px;
         padding : 10px;
     }
@@ -18,12 +18,7 @@ html{
     input:focus{
         outline: none;
     }
-    button{
-        margin: 3px;
-        border-radius: 25px;
-        padding: 10px;
-        background-color: $button-color;
-    }
+    
     button:focus{
         outline:none;
     }

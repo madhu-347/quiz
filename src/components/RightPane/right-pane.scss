@@ -4,32 +4,42 @@
 }
 $mobile-breakpoint : 425px;
 $border-radius : 30px;
-$button-color : #fff;
-$left-color :#f299d6;
-$right-color:#750e55;
+$left-color  : white;
+$right-color:#e3e2d5;
 .right-pane{
     border-top-right-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
     padding: 20px;
-    color: $left-color;
+    color: black;
     width: 60%;
     background-color: $right-color;
+    min-height: 600px;
+    .heading-container{
+        display: flex;
+        justify-content: center;
+        .back-button-for-mobile{
+            color: $left-color
+        }
+        .frame-question{
+            margin-top: 7px;
+        }
+    }
     
     img{
-        height : 100px;
-        width: 100px;
+        height : 50%;
+        width : 50%;
+        margin-bottom: 20px;
     }
-    label{
-        text-align: center;
+           
+    .option-input{
+        display: flex;
     }
-    textarea{
-        border-radius: 20px;
-    }
+
     textarea:focus{
-       outline: none;
+        outline: none;
     }
     button{
-        background-color: $left-color;
+        
         color: #fff;
     }
     button:hover{
@@ -37,3 +47,7 @@ $right-color:#750e55;
     }
 
 }
+
+    
+
+

@@ -5,52 +5,31 @@
 $mobile-breakpoint : 425px;
 $border-radius : 30px;
 $button-color : #fff;
-$left-color: #f299d6;
-$right-color:#750e55;
+$left-color  : white;
+$right-color:#e3e2d5;
 
 .left-pane{
     border-top-left-radius: $border-radius;
     border-bottom-left-radius:$border-radius;
-    color: $right-color;
+    color: black;
     padding: 40px;
     width: 40%;
     text-align: left;
     background-color: $left-color;
-    button{
-        color:$right-color; 
-        border:0px solid $left-color;
-        display: flex; 
-        margin: 0px;
-        padding: 0;
-        background-color: $left-color;
-    }
-    button:hover{
-        display: flex; 
-        
-    }
-    .question-button{
-        color:#3d032c;
-        padding: 10px;
-        display: flex; 
-        margin: 10px;
-        background-color: $right-color;
-    }
-    .hidden-navi-button{
-        display: none;
-    }
-    .question-button:hover{
-        padding: 10px;
-        color: #fff;
-    }
+    min-height: 400px;
+   
+   
     .left-pane-topic{
         padding-bottom: 50px;
-        
-    }
-}
-@media (max-width: $mobile-breakpoint){
-    .left-pane{
-        .hidden-navi-button{
-            display: block;
+        .border-radius{
+            border-top-left-radius: $border-radius;
+            border-bottom-left-radius:$border-radius;
         }
+       
+    }
+    .invisible-button{
+        background-color: $left-color;
+        border: none;
+        margin-bottom: 20px;
     }
 }
